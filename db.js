@@ -5,8 +5,17 @@ const pool = new Pool({
   ssl: { rejectUnauthorized: false },
 });
 
-pool.query(`
+module.exports = pool.query(`
     CREATE TABLE IF NOT EXISTS profiles (
-    
+    id TEXT PRIMARY KEY,
+    name VARCHAR UNIQUE,
+    gender VARCHAR,
+    gender_probability FLOAT,
+    age INT,
+    age_group VARCHAR,
+    country_id VARCHAR(2),
+    country_name VARCHAR,
+    country_probability FLOAT,
+    created_at TIMESTAMP
     )
-    `)
+    `);
