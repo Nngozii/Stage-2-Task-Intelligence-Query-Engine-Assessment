@@ -1,11 +1,12 @@
-const { Pool } = require("ps");
+const { Pool } = require("pg");
+require("dotenv").config();
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: { rejectUnauthorized: false },
 });
 
-module.exports = pool.query(`
+pool.query(`
     CREATE TABLE IF NOT EXISTS profiles (
     id TEXT PRIMARY KEY,
     name VARCHAR UNIQUE,
@@ -19,3 +20,5 @@ module.exports = pool.query(`
     created_at TIMESTAMP
     )
     `);
+
+module.exports = pool;
