@@ -106,7 +106,17 @@ app.get("/api/profiles", async (req, res) => {
       data: profiles,
     });
   } catch (err) {
-    console.log(err.message, err.stack);
+    if (err.code === "ECONNABORTED" || err.code === "ETIMEDOUT") {
+      return res.status(502).json({
+        status: "error",
+        message: "Upstream API timed out",
+      });
+    } else {
+      res.status(500).json({
+        status: "error",
+        message: "Internal Server Error",
+      });
+    }
   }
 });
 
