@@ -17,7 +17,7 @@ pool.query(`
     country_id VARCHAR(2),
     country_name VARCHAR,
     country_probability FLOAT,
-    created_at TIMESTAMP
+    created_at TIMESTAMP DEFAULT NOW()
     )
     `);
 
