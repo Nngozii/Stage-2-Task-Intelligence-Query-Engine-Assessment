@@ -90,7 +90,6 @@ If no filters can be parsed from the query:
 ```json
 { "status": "error", "message": "Unable to interpret query" }
 ```
-
 ---
 
 ## Limitations
